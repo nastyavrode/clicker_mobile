@@ -53,4 +53,36 @@ class MainActivity : AppCompatActivity() {
                 updateUi()
             }
         }
+        btnUpgrade2.setOnClickListener {
+            if (counter >= autoUpgradeCost) {
+                counter -= autoUpgradeCost
+                autoPower++                       // +1 к автоклику
+                autoUpgradeCost *= 2              // цена растёт в 2 раза
+                updateUi()
+            }
+        }
+        autoRunnable = object : Runnable {
+            override fun run() {
+                if (autoPower > 0) {
+                    counter += autoPower
+                    updateUi()
+                } // +1 к
+                handler.postDelayed(this, 1000)
+            }
+        }
+        handler.postDelayed(autoRunnable, 1000)
+        updateUi()
+    }
+    private fun updateUi() {
+        tvCounter.text = counter.toString()
+        tvInfo.text = "+$clickPower за клик | +$autoPower в секунду"
+        btnUpgrade1.text = "Улучшение клика (${clickUpgradeCost})"
+        btnUpgrade2.text = "Улучшение автоклика (${autoUpgradeCost})"
+        btnUpgrade1.isEnabled = counter >= clickUpgradeCost
+        btnUpgrade2.isEnabled = counter >= autoUpgradeCost
+    }
+    override fun onDestroy() {
+    super.onDestroy()
+        handler.removeCallbacks(autoRunnable)
+    }
 }
