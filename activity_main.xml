@@ -1,80 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvCounter"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:textSize="72sp"
-        android:textStyle="bold"
-        android:textColor="#FF5722"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnClick"
-        app:layout_constraintVertical_bias="0.3" />
+        android:padding="16dp">
 
-    <!-- Информация о текущих улучшениях -->
-    <TextView
-        android:id="@+id/tvInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+1 за клик | 0 в секунду"
-        android:textSize="16sp"
-        android:textColor="#666666"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvCounter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <!-- Счётчик -->
+        <TextView
+            android:id="@+id/tvCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="72sp"
+            android:textStyle="bold"
+            android:textColor="#FF5722"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btnClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="НАЖМИ МЕНЯ!"
-        android:textSize="20sp"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpgrade1" />
+        <!-- Информация об улучшениях -->
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1 за клик | 0 в секунду"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvCounter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Кнопка улучшения 1 -->
-    <Button
-        android:id="@+id/btnUpgrade1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="Улучшить клик (10)"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnUpgrade2" />
+        <!-- Главная кнопка клика -->
+        <Button
+            android:id="@+id/btnClick"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="НАЖМИ МЕНЯ!"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Кнопка улучшения 2 -->
-    <Button
-        android:id="@+id/btnUpgrade2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Автоклик (50)"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <!-- ===== Улучшения ===== -->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 1. Сила клика -->
+        <Button
+            android:id="@+id/btnUpgradeClick"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Сила клика (10)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 2. Автоклик -->
+        <Button
+            android:id="@+id/btnUpgradeAuto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Автоклик (50)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeClick"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 3. Критический клик -->
+        <Button
+            android:id="@+id/btnUpgradeCrit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Крит. клик 20% x5 (100)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeAuto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 4. Мега-клик -->
+        <Button
+            android:id="@+id/btnUpgradeMega"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Мега-клик +5 (200)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeCrit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 5. Турбо-автоклик -->
+        <Button
+            android:id="@+id/btnUpgradeTurbo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Турбо-авто +5/сек (500)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeMega"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 6. Золотой клик -->
+        <Button
+            android:id="@+id/btnUpgradeGold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Золотой клик x10 (1000)"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeTurbo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Кнопка сброса -->
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Сбросить прогресс"
+            android:textSize="14sp"
+            android:backgroundTint="#B0BEC5"
+            app:layout_constraintTop_toBottomOf="@+id/btnUpgradeGold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
